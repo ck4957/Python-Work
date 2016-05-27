@@ -1,0 +1,77 @@
+#description: Report of test cases for testing Six degree of Kevin Bacon
+#file name : report.txt
+#author : Chirag Kular
+#Version : 1.0
+
+
+
+Test Num: 1
+Description: Connection with one link
+Input File : test0.txt
+Start: Demi Moore
+Finish: John Cusack
+Correct Results:
+Demi Moore
+	was in OneCrazySummer with
+John Cusack
+
+Test Num: 2
+Description: Connection with two link
+Input File : test0.txt
+Start: John Cusack
+Finish: Jack Nicholson
+Correct Results:
+John Cusack
+	was in OneCrazySummer with
+Demi Moore
+	was in AFewGoodMen with
+Jack Nicholson
+
+Test Num: 3
+Description: Connection with three link
+Input File : test0.txt
+Start: Ian McKellen
+Finish: Elisabeth Shue
+Correct Results:
+Ian McKellen
+	was in DaVinciCode with
+Tom Hanks
+	was in Apollo13 with
+Kevin Bacon
+	was in HollowMan with
+Elisabeth Shue
+
+Test Num: 4
+Description: Connection with four link
+Input File : test0.txt
+Start: John Cusack
+Finish: Audrey Tautou
+Correct Results: No chain exists
+
+Test Num: 5
+Description: No Connection
+Input File : test2.txt
+Start: Kevin Bacon
+Finish: Theresa Russell
+Correct Results: No chain exists
+
+Test Num: 6
+Description: Connection with three links
+Input File : test2.txt
+Start: William Shatner
+Finish: Gerry Becker
+Correct Results:
+William Shatner
+	was in LoadedWeapon with
+Denise Richards
+	was in WildThings with
+Kevin Bacon
+	was in Sleepers with
+Gerry Becker
+
+Test Num: 7
+Description: When start & end node is same
+Input File : test2.txt
+Start: Kevin Bacon
+Finish: Kevin Bacon
+Correct Results: No chain exists

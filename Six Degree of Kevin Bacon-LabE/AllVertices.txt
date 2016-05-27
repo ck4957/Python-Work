@@ -1,0 +1,82 @@
+"""
+description: An implementation of a Six dergee of Kevin Bacon using graph data structure
+file: labE_graph.py
+language: python3
+Author: Sean Strout @ RIT CS
+"""
+
+from LabE.labE_graph import *
+
+# Global List
+movie_list = []
+
+
+def createGraph(file):
+    g = Graph()
+
+    for line in file:
+        line = line.strip()
+        biglist = line.split()
+        movie_name = biglist[0]
+        movie_list.append(movie_name)
+        if movie_name not in g.getVertices():
+            g.addVertex(movie_name)
+        for i in range(1, len(biglist), 2):
+            actor_name = biglist[i]+" "+biglist[i+1]
+            if actor_name in g.getVertices():
+                g.addEdge(movie_name, actor_name)
+                g.addEdge(actor_name,movie_name)
+            else:
+                g.addVertex(actor_name)
+                g.addEdge(actor_name,movie_name)
+                g.addEdge(movie_name, actor_name)
+    return g
+
+
+def printGraph(g):
+    print("Vertices and their connections in graph are as follows: ")
+    for vertices in g:
+        print(vertices)
+
+
+def findpath(g):
+
+    start = input("Enter starting node name :")
+    if g.getVertex(start) == None:
+        print("Starting Node is not present in the graph ")
+        return None
+    else:
+        start = g.getVertex(start)
+
+    end = input("Enter goal node name :")
+    if g.getVertex(end) == None:
+        print("Goal Node is not present in the graph ")
+        return None
+    else:
+        end = g.getVertex(end)
+
+    path = findShortestPath(start, end)
+    #print(len(path))
+    if path is None or len(path)>7:
+        print("No chain exists")
+    else:
+        for i in range(len(path)):
+            if i % 2 != 0:
+                print("\twas in "+path[i].id+" with")
+            else:
+                print(path[i].id)
+
+
+def main():
+    try:
+        file_name = input("Enter the File name :")
+        file = open(file_name)
+        sixdegree_graph = createGraph(file)
+        printGraph(sixdegree_graph)
+        findpath(sixdegree_graph)
+    except FileNotFoundError:
+        print("File not Found")
+
+
+if __name__ == '__main__':
+    main()
